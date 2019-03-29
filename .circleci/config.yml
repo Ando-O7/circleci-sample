@@ -22,4 +22,5 @@ jobs:
       - checkout
 
       # specify any bash command here prefixed with `run: `
-      - run: go vet ./
+      - run: go get -u github.com/reviewdog/reviewdog/cmd/reviewdog
+      - run: golint ./... | reviewdog -efm="%f:%l:%c: %m" -diff="git diff master"

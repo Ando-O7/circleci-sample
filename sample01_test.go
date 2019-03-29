@@ -6,8 +6,10 @@ import (
 
 func TestHelloWorld(t *testing.T) {
 	actual := HelloWorld("hoge")
-	expected := "aaa, hoge"
+	expected := "hello world, hoge"
 	if actual != expected {
 		t.Errorf("actual %v\nwant %v", actual, expected)
 	}
 }
+
+var ExportedVarWithoutComment = 1 // TODO: revert
