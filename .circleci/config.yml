@@ -20,7 +20,7 @@ jobs:
     #### expecting it in the form of
     ####   /go/src/github.com/circleci/go-tool
     ####   /go/src/bitbucket.org/circleci/go-tool
-    working_directory: /go/src/github.com/Ando-O7/circleci-sample
+    # working_directory: /go/src/github.com/Ando-O7/circleci-sample
     steps:
       - checkout
       # specify any bash command here prefixed with `run: `
