@@ -6,7 +6,10 @@ jobs:
   build:
     docker:
       # specify the version
-      - image: circleci/golang:1.8
+      # - image: circleci/golang:1.8
+      - image: golang:latest
+        environment:
+          REVIEWDOG_VERSION: "0.9.11"
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -17,10 +20,14 @@ jobs:
     #### expecting it in the form of
     ####   /go/src/github.com/circleci/go-tool
     ####   /go/src/bitbucket.org/circleci/go-tool
-    working_directory: /go/src/github.com/Ando-O7/circleci-sample
+    # working_directory: /go/src/github.com/Ando-O7/circleci-sample
     steps:
       - checkout
-
+      - run: curl -fSL https://github.com/reviewdog/reviewdog/releases/download/$REVIEWDOG_VERSION/reviewdog_linux_amd64 -o reviewdog && chmod +x ./reviewdog
+      - run: go vet ./... 2>&1 | ./reviewdog -f=govet -reporter=github-pr-check
       # specify any bash command here prefixed with `run: `
-      - run: go get -u github.com/reviewdog/reviewdog/cmd/reviewdog
-      - run: golint ./... | reviewdog -efm="%f:%l:%c: %m" -diff="git diff master"
+      # - run: go get -u github.com/reviewdog/reviewdog/cmd/reviewdog
+      # - run: golint ./... | reviewdog -efm="%f:%l:%c: %m" -diff="git diff master
+      # - run: golint $(go list ./...) | reviewdog -f=golint -reporter='github-pr-review'
+      # - run: go get -v -t -d ./...
+      # - run: go test -v ./...
