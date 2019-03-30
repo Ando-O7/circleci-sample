@@ -23,6 +23,6 @@ jobs:
       - checkout
       # specify any bash command here prefixed with `run: `
       - run: go get -u github.com/reviewdog/reviewdog/cmd/reviewdog
-      - run: go lint ./...) | reviewdog -f=golint -reporter='github-pr-review'
+      - run: go vet ./... | reviewdog -f=govet -diff="git diff master"
       # - run: go get -v -t -d ./...
       # - run: go test -v ./...
