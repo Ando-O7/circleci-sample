@@ -1,7 +1,7 @@
 package sample01
 
 func HelloWorld(s string) string {
-	var x int
-	x = "string"
+	var y int
+	y = "aaa"
 	return "hello world, " + s
 }
