@@ -31,4 +31,4 @@ jobs:
       - run: go get -u golang.org/x/lint/golint
       - run: go get -u github.com/reviewdog/reviewdog/cmd/reviewdog
       - run: golint ./... | reviewdog -f=golint -reporter=github-pr-review -diff="git diff master"
-      - run: go vet ./... | reviewdog -f=govet -reporter=github-pr-review
+      - run: go vet ./... 2>&1 | reviewdog -f=govet -reporter=github-pr-review -diff="git diff master"
