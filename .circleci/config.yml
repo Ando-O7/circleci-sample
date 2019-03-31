@@ -29,4 +29,4 @@ jobs:
       # - run: go test -v ./...
       # - run: curl -fSL https://github.com/reviewdog/reviewdog/releases/download/$REVIEWDOG_VERSION/reviewdog_linux_amd64 -o reviewdog && chmod +x ./reviewdog
       - run: go get -u github.com/reviewdog/reviewdog/cmd/reviewdog
-      - run: go vet ./... 2>&1 | reviewdog -f=govet -reporter=github-pr-check # -diff="git diff master"
+      - run: go vet ./... 2>&1 | reviewdog -f=govet -reporter=github-pr-review -diff="git diff master"
