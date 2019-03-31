@@ -30,4 +30,4 @@ jobs:
       # - run: curl -fSL https://github.com/reviewdog/reviewdog/releases/download/$REVIEWDOG_VERSION/reviewdog_linux_amd64 -o reviewdog && chmod +x ./reviewdog
       - run: go get -u golang.org/x/lint/golint
       - run: go get -u github.com/reviewdog/reviewdog/cmd/reviewdog
-      - run: golint ./... | reviewdog -f=golint -reporter=github-pr-review
+      - run: golint ./... | reviewdog -f=golint -reporter=github-pr-review -diff="git diff master"
